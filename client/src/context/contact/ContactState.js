@@ -7,6 +7,7 @@ import {
   DELETE_CONTACT,
   SET_CURRENT,
   CLEAR_CURRENT,
+  UPDATE_CONTACT,
 } from "../types";
 
 // Create initial state
@@ -56,6 +57,12 @@ const ContactState = (props) => {
   const clearCurrent = () => {
     dispatch({ type: CLEAR_CURRENT });
   };
+
+  // Update Contact
+  const updateContact = (contact) => {
+    dispatch({ type: UPDATE_CONTACT, payload: contact });
+  };
+
   return (
     <ContactContext.Provider
       value={{
@@ -65,6 +72,7 @@ const ContactState = (props) => {
         deleteContact,
         setCurrent,
         clearCurrent,
+        updateContact,
       }}
     >
       {props.children}

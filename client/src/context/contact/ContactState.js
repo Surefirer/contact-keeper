@@ -1,14 +1,16 @@
-import React, { useReducer } from "react";
-import { v4 as uuidv4 } from "uuid";
-import ContactContext from "./contactContext";
-import contactReducer from "./contactReducer";
+import React, { useReducer } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import ContactContext from './contactContext';
+import contactReducer from './contactReducer';
 import {
   ADD_CONTACT,
   DELETE_CONTACT,
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_CONTACT,
-} from "../types";
+  FILTER_CONTACTS,
+  CLEAR_FILTER,
+} from '../types';
 
 // Create initial state
 
@@ -17,20 +19,21 @@ const ContactState = (props) => {
     contacts: [
       {
         id: 1,
-        name: "Jill Johnson",
-        email: "jill@gmail.com",
-        phone: "111-111-1111",
-        type: "personal",
+        name: 'Jill Johnson',
+        email: 'jill@gmail.com',
+        phone: '111-111-1111',
+        type: 'personal',
       },
       {
         id: 2,
-        name: "Sara Watson",
-        email: "sara@gmail.com",
-        phone: "222-222-2222",
-        type: "professional",
+        name: 'Sara Watson',
+        email: 'sara@gmail.com',
+        phone: '222-222-2222',
+        type: 'professional',
       },
     ],
     current: null,
+    filtered: null,
   };
 
   const [state, dispatch] = useReducer(contactReducer, initialState);
@@ -63,16 +66,29 @@ const ContactState = (props) => {
     dispatch({ type: UPDATE_CONTACT, payload: contact });
   };
 
+  // Filter Contacts
+  const filterContacts = (text) => {
+    dispatch({ type: FILTER_CONTACTS, payload: text });
+  };
+
+  // Clear Filter
+  const clearFilter = () => {
+    dispatch({ type: CLEAR_FILTER });
+  };
+
   return (
     <ContactContext.Provider
       value={{
         contacts: state.contacts,
         current: state.current,
+        filtered: state.filtered,
         addContact,
         deleteContact,
         setCurrent,
         clearCurrent,
         updateContact,
+        filterContacts,
+        clearFilter,
       }}
     >
       {props.children}

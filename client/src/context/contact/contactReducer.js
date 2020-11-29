@@ -4,8 +4,11 @@ import {
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_CONTACT,
-} from "../types";
+  FILTER_CONTACTS,
+  CLEAR_FILTER,
+} from '../types';
 
+// eslint-disable-next-line
 export default (state, action) => {
   switch (action.type) {
     case ADD_CONTACT:
@@ -36,6 +39,19 @@ export default (state, action) => {
       return {
         ...state,
         current: null,
+      };
+    case FILTER_CONTACTS:
+      return {
+        ...state,
+        filtered: state.contacts.filter((contact) => {
+          const regex = new RegExp(`${action.payload}`, 'gi');
+          return contact.name.match(regex) || contact.email.match(regex);
+        }),
+      };
+    case CLEAR_FILTER:
+      return {
+        ...state,
+        filtered: null,
       };
     default:
       return state;

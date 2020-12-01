@@ -6,6 +6,7 @@ import {
   UPDATE_CONTACT,
   FILTER_CONTACTS,
   CLEAR_FILTER,
+  CONTACT_ERROR,
 } from '../types';
 
 // eslint-disable-next-line
@@ -39,6 +40,11 @@ export default (state, action) => {
       return {
         ...state,
         current: null,
+      };
+    case CONTACT_ERROR:
+      return {
+        ...state,
+        error: action.payload,
       };
     case FILTER_CONTACTS:
       return {

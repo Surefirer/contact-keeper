@@ -2,7 +2,7 @@ This project is part of Brad Traversy's react front to back course from udemy. I
 
 ## Live Demo
 
-Currently working on it.
+https://pure-ravine-71555.herokuapp.com/
 
 ## Description
 

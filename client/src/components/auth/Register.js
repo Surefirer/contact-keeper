@@ -1,4 +1,3 @@
-import { PromiseProvider } from 'mongoose';
 import React, { useState, useContext, useEffect } from 'react';
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';

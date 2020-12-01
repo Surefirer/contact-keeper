@@ -1,4 +1,3 @@
-import { TransitionGroup } from 'react-transition-group';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
